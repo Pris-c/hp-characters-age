@@ -20,8 +20,10 @@ yearOfBirth |	--- |	Year of the character birth.
 To develop this project, It was use the features bellow:<br>
 * Java 21<br>
 * Spring Boot 3<br>
+* H2 Database
 * PostgresSQL
 * Maven<br>
 * Railway<br>
 
-That was the [Spring Boot Initializer](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.4&packaging=jar&jvmVersion=21&groupId=com.prisc&artifactId=hp-characters-age&name=hp-characters-age&description=Java%20RESTful%20API%20to%20practice%20with%20SpringBoot&packageName=com.prisc.hp-characters-age&dependencies=web,postgresql,data-jpa) configuration.
+That was the [Spring Boot Initializer](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.4&packaging=jar&jvmVersion=21&groupId=com.prisc&artifactId=hp-characters-age&name=hp-characters-age&description=Java%20RESTful%20API%20to%20practice%20with%20SpringBoot&packageName=com.prisc.hp-characters-age&dependencies=web,postgresql,data-jpa) configuration.<br>
+The H2 Database was used to tests along the development.
