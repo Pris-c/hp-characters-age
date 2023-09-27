@@ -32,12 +32,16 @@ public class CharacterAPI {
     private Boolean alive;
     private String image;
 
-    public boolean anyName(String name){
-        return this.name.contains(name) ||
-                isThere(name);
+    public boolean isThereDateOfBirth(){
+        return this.getDateOfBirth() != null;
     }
 
-    private boolean isThere(String name){
+    public boolean anyName(String name){
+        return this.name.contains(name) ||
+                isThereName(name);
+    }
+
+    private boolean isThereName(String name){
         boolean thereIs = false;
         if (this.alternateNames != null) {
             for (String n : alternateNames) {

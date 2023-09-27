@@ -1,5 +1,6 @@
 package com.prisc.hpcharactersage.controller;
 
+import com.prisc.hpcharactersage.model.Character;
 import com.prisc.hpcharactersage.model.CharacterAPI;
 import com.prisc.hpcharactersage.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CharacterController {
     private CharacterService characterService;
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<CharacterAPI>> getCharacterByName(@PathVariable String name){
+    public ResponseEntity<List<Character>> getCharacterByName(@PathVariable String name){
         return ResponseEntity.ok(characterService.getCharacter(name));
     }
 

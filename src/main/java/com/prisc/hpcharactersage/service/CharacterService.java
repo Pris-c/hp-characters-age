@@ -1,11 +1,11 @@
 package com.prisc.hpcharactersage.service;
 
-import com.prisc.hpcharactersage.model.CharacterAPI;
+import com.prisc.hpcharactersage.model.Character;
 
 import java.util.List;
 
 
 public interface CharacterService {
-    public List<CharacterAPI> getCharacter(String name);
+    public List<Character> getCharacter(String name);
 
 }

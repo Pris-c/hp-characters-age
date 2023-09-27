@@ -1,6 +1,7 @@
 package com.prisc.hpcharactersage.service.impl;
 
 import com.prisc.hpcharactersage.model.*;
+import com.prisc.hpcharactersage.model.Character;
 import com.prisc.hpcharactersage.service.CharacterService;
 import com.prisc.hpcharactersage.service.HpApiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ public class CharacterServiceImpl implements CharacterService{
     private HpApiService hpApiService;
 
     @Override
-    public List<CharacterAPI> getCharacter(String name) {
-        return this.getCharacterApiList(name);
+    public List<Character> getCharacter(String name) {
+        return getCharacterApiList(name).stream()
+                .map(c -> new Character(c.getId(), c.getName(), c.getDateOfBirth()))
+                .toList();
     }
 
     private List<CharacterAPI> getCharacterApiList(String name){
@@ -24,14 +27,8 @@ public class CharacterServiceImpl implements CharacterService{
         return charactersList
                 .stream()
                 .filter(ch -> ch.anyName(name))
+                .filter(CharacterAPI::isThereDateOfBirth)
                 .toList();
-
-        /*
-        List<Character> charactersApiNameName = charactersApiName.stream()
-                .map(c -> new Character(c.getId(), c.getName(), c.getSpecies(), c.getYearOfBirth()))
-                .toList();
-        return charactersApiName;
-        */
     }
 
 
