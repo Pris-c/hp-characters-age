@@ -1,0 +1,1 @@
+web: java -jar target/hp-characters-age-0.0.1-SNAPSHOT.jar
