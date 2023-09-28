@@ -31,7 +31,7 @@ public class CharacterServiceImpl implements CharacterService{
                 for (Character c : list) {
                     this.save(c);
                 }
-                character = list.getFirst();
+                character = list.get(0);
                 characterResponse = new CharacterResponse(character.getName(), character.getDateOfBirth());
             }
         }
