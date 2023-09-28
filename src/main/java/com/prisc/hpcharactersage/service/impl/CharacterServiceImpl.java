@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class CharacterServiceImpl implements CharacterService{
@@ -18,8 +20,25 @@ public class CharacterServiceImpl implements CharacterService{
     @Autowired
     private CharacterRepository characterRepository;
 
-    @Override
-    public List<Character> getCharacterList(String name) {
+    public CharacterResponse getCharacter(String name){
+        Character character = findCharacter(name);
+        CharacterResponse characterResponse = new CharacterResponse();
+        if (character != null){
+            characterResponse = new CharacterResponse(character.getName(), character.getDateOfBirth());
+        } else {
+            List<Character> list = getCharacterList(name);
+            if (!list.isEmpty()) {
+                for (Character c : list) {
+                    this.save(c);
+                }
+                character = list.getFirst();
+                characterResponse = new CharacterResponse(character.getName(), character.getDateOfBirth());
+            }
+        }
+        return characterResponse;
+    }
+
+    private List<Character> getCharacterList(String name) {
         return getCharacterApiList(name).stream()
                 .map(c -> new Character(c.getId(), c.getName(), c.getDateOfBirth()))
                 .toList();
@@ -34,31 +53,11 @@ public class CharacterServiceImpl implements CharacterService{
                 .toList();
     }
 
-
-    public CharacterResponse getCharacter(String name){
-        Character character = findCharacter(name);
-        CharacterResponse characterResponse;
-        if (character != null){
-            characterResponse = new CharacterResponse(character.getName(), character.getDateOfBirth());
-            return characterResponse;
-        }
-        List<Character> list = getCharacterList(name);
-        if (!list.isEmpty()){
-            for (Character c: list){
-                this.save(c);
-            }
-            character = list.getFirst();
-            characterResponse = new CharacterResponse(character.getName(), character.getDateOfBirth());
-            return characterResponse;
-        }
-        return null;
-    }
-
-    public Character save(Character c){
+    private Character save(Character c){
         return characterRepository.save(c);
     }
 
-    public Character findCharacter(String name){
+    private Character findCharacter(String name){
         return characterRepository.findByName(name).orElse(null);
     }
 
