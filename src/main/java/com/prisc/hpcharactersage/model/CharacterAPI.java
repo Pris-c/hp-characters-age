@@ -37,15 +37,16 @@ public class CharacterAPI {
     }
 
     public boolean anyName(String name){
-        return this.name.contains(name) ||
+        return this.name.toLowerCase().contains(name.toLowerCase()) ||
                 isThereName(name);
     }
 
     private boolean isThereName(String name){
+        name = name.toLowerCase();
         boolean thereIs = false;
         if (this.alternateNames != null) {
             for (String n : alternateNames) {
-                if (n.contains(name)) {
+                if (n.toLowerCase().contains(name)) {
                     thereIs = true;
                     break;
                 }

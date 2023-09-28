@@ -24,39 +24,17 @@ public class Character {
     private String id;
     private String name;
     private String dateOfBirth;
-    private Integer age;
+
+    public Character() {
+    }
 
     public Character(String id, String name, String dateOfBirth) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.age = this.calculateAge(dateOfBirth);
 
     }
 
-    private Integer calculateAge(String birth){
-        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date dateBirth = null;
-        try {
-            dateBirth = sdf.parse(birth);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        Calendar dateOfBirth = new GregorianCalendar();
-        dateOfBirth.setTime(dateBirth);
-
-        Calendar today = Calendar.getInstance();
-
-        int age = today. get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
-        dateOfBirth.add(Calendar.YEAR, age);
-
-        if (today.before(dateOfBirth)) {
-            age--;
-        }
-
-        return age;
-    }
 
 
 
