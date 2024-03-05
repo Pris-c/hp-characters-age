@@ -5,8 +5,6 @@
 To practice the backend development I chose to use an [API](https://hp-api.onrender.com/) about one of my favorites histories, witch is Harry Potter's one.
 It's a simple project that returns the current age of some of the characters.
 
-You can interact with my project by the Swagger Interface in [this link](https://hp-prd.up.railway.app/swagger-ui/index.html).
-
 ### The API
 
 Currently, the [HP-API](https://hp-api.onrender.com/) has information of 402 characters. Not everyone has all the information.
